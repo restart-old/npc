@@ -14,12 +14,9 @@ const (
 )
 
 func EncodeSkinPNG(skin skin.Skin, path string) error {
-	var f *os.File
-	var err error
-
-	if f, err = os.OpenFile(path, os.O_RDWR, 777); os.IsNotExist(err) {
-		os.WriteFile(path, []byte(""), 777)
-		f, _ = os.OpenFile(path, os.O_RDWR, 777)
+	f, err := os.Create(path)
+	if err != nil {
+		return err
 	}
 	defer f.Close()
 	err = png.Encode(f, skin)
@@ -32,7 +29,7 @@ func DecodePNGSkin(path, geometry string) (skin.Skin, error) {
 	var f *os.File
 	var err error
 
-	if f, err = os.OpenFile(path, os.O_RDWR, 777); os.IsNotExist(err) {
+	if f, err = os.OpenFile(path, os.O_RDWR, 0777); os.IsNotExist(err) {
 		return skin.Skin{}, err
 	}
 
