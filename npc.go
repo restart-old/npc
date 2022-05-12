@@ -55,7 +55,7 @@ func (s *NPC) WithYawAndPitch(yaw, pitch float64) *NPC {
 // AddToWorld adds the NPC to the world provided and executes the spawnFunc if any.
 func (s *NPC) AddToWorld(w *world.World) {
 	if s.spawnFunc != nil {
-		s.spawnFunc(s)
+		go s.spawnFunc(s)
 	}
 	l := world.NewLoader(16, w, s)
 	l.Move(s.p.Position())
