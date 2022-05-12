@@ -1,4 +1,4 @@
-module github.com/dragonfly-plus/npc
+module github.com/df-plus/npc
 
 go 1.17
 
