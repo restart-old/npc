@@ -59,7 +59,7 @@ func (s *NPC) AddToWorld(w *world.World) {
 	}
 	l := world.NewLoader(16, w, s)
 	l.Move(s.p.Position())
-	_ = l.Load(1)
+	l.Load(1)
 	w.AddEntity(s.p)
 	s.p.Move(mgl64.Vec3{0, 0, 0}, s.yaw, s.pitch)
 }

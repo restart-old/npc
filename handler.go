@@ -4,6 +4,7 @@ import (
 	"github.com/df-mc/dragonfly/server/entity/damage"
 	"github.com/df-mc/dragonfly/server/event"
 	"github.com/df-mc/dragonfly/server/player"
+	"time"
 )
 
 // Handler is a handler for NPCs.
@@ -13,7 +14,7 @@ type Handler struct {
 }
 
 // HandleHurt will cancel the hurt action and run the action of the NPC if there is any.
-func (s Handler) HandleHurt(ctx *event.Context, dmg *float64, src damage.Source) {
+func (s Handler) HandleHurt(ctx *event.Context, _ *float64, _ *time.Duration, src damage.Source) {
 	ctx.Cancel()
 	e, ok := src.(damage.SourceEntityAttack)
 	if !ok || s.action == nil {
